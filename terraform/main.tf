@@ -6,7 +6,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    region  = "eu-central-1"
+    region  = "eu-west-2"
     bucket  = "omom-terraform"
     key     = "calorific-conversion.tfstate"
     profile = "261496907632"
