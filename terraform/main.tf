@@ -42,3 +42,13 @@ resource "aws_s3_bucket_object" "login_page" {
 
   content_type = "text/html"
 }
+
+resource "aws_s3_bucket_object" "css" {
+  bucket = "omom-website"
+  key    = "calorific-conversion.css"
+  source = "../website/calorific-conversion.css"
+
+  etag = "${filemd5("../website/calorific-conversion.css")}"
+
+  content_type = "text/html"
+}
