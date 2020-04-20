@@ -19,27 +19,53 @@
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
 		});
+
+		document.addEventListener('DOMContentLoaded', function () {
+			var elems = document.querySelectorAll('.parallax');
+			var instances = M.Parallax.init(elems);
+		});
 	</script>
 </head>
 
 <body>
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo center">Home</a>
-			<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<li><a href="./calorific-conversion.html">Home</a></li>
-				<li><a href="./leaderboard.html">Leaderboard</a></li>
-				<li><a href="./login.html">Login</a></li>
-			</ul>
-		</div>
-	</nav>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper green">
+				<a href="./calorific-conversion.html" class="brand-logo center">OMOM Pandemic</a>
+				<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li class="active"><a href="./calorific-conversion.html">Home</a></li>
+					<li><a href="./leaderboard.html">Leaderboard</a></li>
+					<li><a href="./login.html">Login</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
 
 	<ul class="sidenav" id="mobile">
-		<li><a href="./calorific-conversion.html">Home</a></li>
+		<li class="active"><a href="./calorific-conversion.html">Home</a></li>
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li><a href="./login.html">Login</a></li>
 	</ul>
+
+	<div class="parallax-container">
+		<div class="parallax">
+			<img
+				src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Monasterio_Khor_Virap%2C_Armenia%2C_2016-10-01%2C_DD_25.jpg/1920px-Monasterio_Khor_Virap%2C_Armenia%2C_2016-10-01%2C_DD_25.jpg">
+		</div>
+	</div>
+
+	<div class="section white">
+		<div class="row container">
+			<h1>The Challenge</h1>
+			<p class="flow-text">This is the bit where we explain exactly what the challenge is and how people can take
+				part in it.</p>
+
+			<h1>How To Take Part</h1>
+			<p class="flow-text">Explain the sign up process and what to do on the day.</p>
+		</div>
+	</div>
+
 </body>
 
 </html>
