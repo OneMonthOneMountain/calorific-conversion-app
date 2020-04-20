@@ -15,8 +15,10 @@ terraform {
 
 resource "aws_s3_bucket_object" "calorific_conversion_page" {
   bucket = "omom-website"
-  key    = "calorific-conversion.html"
+  key    = "calorific-conversion"
   source = "../src/index.html"
+
+  etag = "${filemd5("../src/index.html")}"
 
   content_type = "text/html"
 }
