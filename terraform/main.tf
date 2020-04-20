@@ -15,6 +15,6 @@ terraform {
 
 resource "aws_s3_bucket_object" "calorific_conversion_page" {
   bucket = "omom-website"
-  key    = "calorific-conversion"
+  key    = "calorific-conversion.html"
   source = "../src/index.html"
 }
