@@ -1,5 +1,5 @@
 provider "aws" {
-  region              = "eu-central-1"
+  region              = "eu-west-2"
   profile             = "261496907632"
   allowed_account_ids = ["261496907632"]
 }
