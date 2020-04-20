@@ -13,13 +13,6 @@
 
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			var elems = document.querySelectorAll('.sidenav');
-			var instances = M.Sidenav.init(elems);
-		});
-	</script>
 </head>
 
 <body>
@@ -42,6 +35,53 @@
 		<li class="active"><a href="./leaderboard.html">Leaderboard</a></li>
 		<li><a href="./login.html">Login</a></li>
 	</ul>
+
+	<div class="container">
+		<table style="margin-top: 2em;" id="data-table">
+			<tr>
+				<th>Name</th>
+				<th>Distance</th>
+				<th>Ascent</th>
+				<th>Points</th>
+			</tr>
+		</table>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var elems = document.querySelectorAll('.sidenav');
+			var instances = M.Sidenav.init(elems);
+		});
+
+		const data = [
+			{name: 'Tom', distance: 3500, ascent: 100},
+			{name: 'Sandra', distance: 4500, ascent: 200},
+			{name: 'Carl', distance: 5000, ascent: 400},
+		]
+
+		const withPoints = data.map(person => ({
+			...person,
+			points: person.distance + (person.ascent * 10)
+		}))
+
+		const sortedData = withPoints.sort((a, b) => b.points - a.points)
+
+		const table = document.getElementById("data-table");
+
+		sortedData.forEach((person, index) => {
+			var row = table.insertRow(index + 1)
+
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+
+			cell1.innerHTML = person.name
+			cell2.innerHTML = person.distance
+			cell3.innerHTML = person.ascent
+			cell4.innerHTML = person.points
+		})
+	</script>
 </body>
 
 </html>
