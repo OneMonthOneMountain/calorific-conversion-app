@@ -8,5 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Testing'
-        run: echo "hello, world!"
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Terraform Format'
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: 'fmt'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
