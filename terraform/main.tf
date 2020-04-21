@@ -145,7 +145,7 @@ resource "aws_lambda_event_source_mapping" "lambda_trigger" {
   function_name     = "${aws_lambda_function.lambda.arn}"
   starting_position = "LATEST"
 
-  maximum_retry_attempts = 0
+  maximum_retry_attempts = 1
 
   batch_size = 1
 }
