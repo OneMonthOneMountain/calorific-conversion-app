@@ -102,7 +102,17 @@ resource "aws_iam_policy" "lambda" {
         "dynamodb:GetShardIterator",
         "dynamodb:ListStreams"
       ],
-      "Resource": "${aws_dynamodb_table.vod.stream_arn}"
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "cloudwatch:PutMetricData"
+      ],
+      "Resource": "*"
     },
   ]
 }
