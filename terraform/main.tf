@@ -97,10 +97,7 @@ resource "aws_iam_policy" "lambda" {
     {
       "Effect": "Allow",
       "Action": [
-        "dynamodb:DescribeStream",
-        "dynamodb:GetRecords",
-        "dynamodb:GetShardIterator",
-        "dynamodb:ListStreams"
+        "dynamodb:*"
       ],
       "Resource": "*"
     },
