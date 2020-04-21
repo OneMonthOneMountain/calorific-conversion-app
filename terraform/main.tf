@@ -113,7 +113,7 @@ resource "aws_iam_policy" "lambda" {
         "cloudwatch:PutMetricData"
       ],
       "Resource": "*"
-    },
+    }
   ]
 }
 EOF
