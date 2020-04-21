@@ -42,3 +42,69 @@ resource "aws_s3_bucket_object" "login_page" {
 
   content_type = "text/html"
 }
+
+data "archive_file" "lamba" {
+  type        = "zip"
+  source_dir  = "${path.module}/../lambda"
+  output_path = "${path.module}/files/lambda.zip"
+}
+
+resource "aws_lambda_function" "lambda" {
+  function_name    = "scores-lambda"
+  filename         = "${data.archive_file.lamba.output_path}"
+  role             = "${aws_iam_role.lambda.arn}"
+  source_code_hash = "${base64sha256(file(data.archive_file.lamba.output_path))}"
+
+  handler = "index.handler"
+  runtime = "nodejs12.x"
+}
+
+resource "aws_iam_role" "lambda" {
+  name = "scores-lambda"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_policy" "lambda" {
+  name = "scores-lambda"
+  path = "/"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "S3:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_policy_attachment" "lambda" {
+  name = "scores_lambda"
+
+  roles = [
+    "${aws_iam_role.lambda.name}",
+  ]
+
+  policy_arn = "${aws_iam_policy.lambda.arn}"
+}
