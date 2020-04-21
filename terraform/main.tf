@@ -53,7 +53,7 @@ resource "aws_lambda_function" "lambda" {
   function_name    = "scores-lambda"
   filename         = "${data.archive_file.lamba.output_path}"
   role             = "${aws_iam_role.lambda.arn}"
-  source_code_hash = "${base64sha256(file(data.archive_file.lamba.output_path))}"
+  source_code_hash = "${filebase64sha256(data.archive_file.lamba.output_path)}"
 
   handler = "index.handler"
   runtime = "nodejs12.x"
