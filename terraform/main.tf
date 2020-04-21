@@ -110,13 +110,12 @@ resource "aws_iam_policy_attachment" "lambda" {
 }
 
 resource "aws_dynamodb_table" "table" {
-  name           = "scores"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "UserId"
+  name         = "scores"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "UserId"
 
   attribute {
     name = "UserId"
     type = "S"
   }
 }
-
