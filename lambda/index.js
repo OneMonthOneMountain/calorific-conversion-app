@@ -6,29 +6,38 @@ const dynamo = new DocumentClient()
 
 const calculateCalories = (activities) => Object.values(activities).reduce((a, b) => a + b, 0)
 
-const calculateData = ({ UserId: name, Activities, CalorieUnit }) => {
+const calculateData = (score) => {
+    console.log(score)
+    const { UserId: name, Activities, CalorieUnit } = score
+    console.log(Activities)
     const calories = calculateCalories(Activities)
     
-    const distance = calories / CalorieUnit
-    const ascent = (calories / CalorieUnit) * 100
+    const ascent = Math.round((calories / CalorieUnit) * 50)
+    const distance =  Math.round((calories / CalorieUnit) * 10) / 10
     
     return { name, calories, distance, ascent }
 }
 
 const handler = async () => {
-    const rawScores = await dynamo.scan({ TableName: 'scores' }).promise()
-    
-    const unsortedScores = rawScores.Items.map(calculateData)
-    
-    const scores = unsortedScores.sort((a, b) => b.calories - a.calories)
-    
-    await s3.putObject({
-        Bucket: 'omom-website',
-        Key: 'scores.json',
-        Body: JSON.stringify({ scores }),
-        ContentType: 'application/json',
-        CacheControl: 'no-cache'
-    }).promise()
+    try {
+        const rawScores = await dynamo.scan({ TableName: 'scores' }).promise()
+        
+        console.log(rawScores)
+        
+        const unsortedScores = rawScores.Items.map(calculateData)
+        
+        const scores = unsortedScores.sort((a, b) => b.calories - a.calories)
+        
+        await s3.putObject({
+            Bucket: 'omom-website',
+            Key: 'scores.json',
+            Body: JSON.stringify({ scores }),
+            ContentType: 'application/json',
+            CacheControl: 'no-cache'
+        }).promise()
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = { handler }
