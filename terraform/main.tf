@@ -93,7 +93,17 @@ resource "aws_iam_policy" "lambda" {
         "S3:*"
       ],
       "Resource": "*"
-    }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:DescribeStream",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:ListStreams"
+      ],
+      "Resource": "${aws_dynamodb_table.vod.stream_arn}"
+    },
   ]
 }
 EOF
@@ -118,4 +128,12 @@ resource "aws_dynamodb_table" "table" {
     name = "UserId"
     type = "S"
   }
+}
+
+resource "aws_lambda_event_source_mapping" "lambda_trigger" {
+  event_source_arn  = "${aws_dynamodb_table.table.stream_arn}"
+  function_name     = "${aws_lambda_function.lambda.arn}"
+  starting_position = "LATEST"
+
+  batch_size = 1
 }
