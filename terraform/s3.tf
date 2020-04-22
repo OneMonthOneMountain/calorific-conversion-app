@@ -24,7 +24,7 @@ resource "aws_s3_bucket_object" "login_page" {
   key    = "login.html"
   source = "../website/login.html"
 
-  etag = "${filemd5("../website/login.html")}"
+  etag = "${filemd5("../website/user.html")}"
 
   content_type = "text/html"
 }
