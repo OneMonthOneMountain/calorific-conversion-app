@@ -7,9 +7,9 @@ const dynamo = new DocumentClient()
 const calculateCalories = (activities) => Object.values(activities).reduce((a, b) => a + b, 0)
 
 const calculateData = (score) => {
-    console.log(score)
-    const { UserId: name, Activities, CalorieUnit } = score
-    console.log(Activities)
+    console.log('Score for user: ', JSON.stringify(score))
+    const { Name: name, Activities, CalorieUnit } = score
+
     const calories = calculateCalories(Activities)
     
     const ascent = Math.round((calories / CalorieUnit) * 50)
