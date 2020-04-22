@@ -5,7 +5,7 @@ const dynamo = new DocumentClient()
 const handler = async (event) => {
 	const user = JSON.parse(event.body)
 	
-	await dynamo.put({
+	await dynamo.update({
 	    TableName: 'scores',
 	    Item: {
 	        "UserId": user.name,
