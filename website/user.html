@@ -61,10 +61,10 @@
 					<li><a href="./leaderboard.html">Leaderboard</a></li>
 					<li class="active"><a href="./user.html">You</a></li>
 					<li>
-						<div class="fb-login-button"
+						<div id="loginButton1" class="fb-login-button hide"
 							style="height: min-content;line-height: normal;padding-left: 12px;padding-right: 12px;"
 							data-size="small" data-button-type="login_with" data-layout="rounded"
-							data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>
+							data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
 					</li>
 				</ul>
 			</div>
@@ -76,15 +76,15 @@
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li class="active"><a href="./user.html">You</a></li>
 		<li>
-			<div class="fb-login-button" data-size="small" data-button-type="login_with" data-layout="rounded"
-				data-auto-logout-link="true" data-use-continue-as="false" data-width=""
+			<div id="loginButton2" class="fb-login-button" data-size="small" data-button-type="login_with"
+				data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width=""
 				style="display: block; margin-left: auto; margin-right: auto; width: min-content;"></div>
 		</li>
 	</ul>
 
 	<div class="section white">
 		<div class="row container">
-			<div id="loggedOut">
+			<div id="loggedOut" class="hide">
 				<h1>You need to log in...</h1>
 			</div>
 			<div id="loggedIn" class="hide">
@@ -119,11 +119,15 @@
 
 			document.getElementById("loggedOut").classList.add("hide")
 			document.getElementById("loggedIn").classList.remove("hide")
+			document.getElementById("loginButton1").classList.add("hide")
+			document.getElementById("loginButton2").classList.add("hide")
 		}
 
 		function loggedOut() {
 			document.getElementById("loggedOut").classList.remove("hide")
 			document.getElementById("loggedIn").classList.add("hide")
+			document.getElementById("loginButton1").classList.remove("hide")
+			document.getElementById("loginButton2").classList.remove("hide")
 		}
 	</script>
 </body>
