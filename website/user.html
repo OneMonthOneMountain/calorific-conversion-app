@@ -122,6 +122,14 @@
 
 			document.getElementById('nameField').value = name
 
+			fetch('https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=12345', {
+				method: 'post'
+			}).then((response) => {
+				return response.json().then((body) => {
+					console.log("BODY", body)
+				})
+			})
+
 			M.updateTextFields()
 		}
 
