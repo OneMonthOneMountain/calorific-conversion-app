@@ -39,14 +39,14 @@ resource "aws_api_gateway_integration" "register_user" {
   http_method = "${aws_api_gateway_method.register_user.http_method}"
   type        = "AWS_PROXY"
 
-  uri                     = "${aws_lambda_function.register_user_lambda.invoke_arn}"
+  uri                     = "${aws_lambda_function.register_user_lamba.invoke_arn}"
   integration_http_method = "POST"
 }
 
 resource "aws_lambda_permission" "register_user" {
   statement_id  = "AllowAPIGateway-${uuid()}"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.register_user_lambda.arn}"
+  function_name = "${aws_lambda_function.register_user_lamba.arn}"
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_deployment.deployment.execution_arn}/*"
 
