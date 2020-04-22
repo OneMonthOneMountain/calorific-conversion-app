@@ -5,7 +5,7 @@ data "archive_file" "get_user_lamba" {
 }
 
 resource "aws_lambda_function" "get_user_lamba" {
-  function_name    = "calculate-scores"
+  function_name    = "get-user"
   filename         = "${data.archive_file.get_user_lamba.output_path}"
   role             = "${aws_iam_role.lambda.arn}"
   source_code_hash = "${filebase64sha256(data.archive_file.get_user_lamba.output_path)}"
