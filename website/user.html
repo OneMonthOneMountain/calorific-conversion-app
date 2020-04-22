@@ -23,6 +23,34 @@
 </head>
 
 <body>
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=2551901968459697&autoLogAppEvents=1"></script>
+	<script>
+		window.fbAsyncInit = function () {
+			console.log('Initialising FB...')
+
+			FB.init({
+				appId: '2551901968459697',
+				version: 'v6.0',
+				status: true,
+			});
+
+			FB.Event.subscribe('auth.statusChange', (response) => {
+				if (response.authResponse) {
+					FB.api('/me', {fields: 'name,picture'}, (user) => {
+						console.log("Logged in.", user)
+
+						loggedIn(user.name, user.picture.data.url)
+					})
+				} else {
+					console.log("Logged out.")
+					loggedOut()
+				}
+			})
+		};
+	</script>
+
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper green">
@@ -32,6 +60,12 @@
 					<li><a href="./calorific-conversion.html">Home</a></li>
 					<li><a href="./leaderboard.html">Leaderboard</a></li>
 					<li class="active"><a href="./user.html">You</a></li>
+					<li>
+						<div class="fb-login-button"
+							style="height: min-content;line-height: normal;padding-left: 12px;padding-right: 12px;"
+							data-size="small" data-button-type="login_with" data-layout="rounded"
+							data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -41,7 +75,28 @@
 		<li><a href="./calorific-conversion.html">Home</a></li>
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li class="active"><a href="./user.html">You</a></li>
+		<li>
+			<div class="fb-login-button" data-size="small" data-button-type="login_with" data-layout="rounded"
+				data-auto-logout-link="true" data-use-continue-as="false" data-width=""
+				style="display: block; margin-left: auto; margin-right: auto; width: min-content;"></div>
+		</li>
 	</ul>
+
+	<div class="section white">
+		<div class="row container">
+			<div id="loggedOut">
+				<h1>You need to log in...</h1>
+			</div>
+			<div id="loggedIn" class="hide">
+				<div class="col s2">
+					<img id="userImage" src="#" alt="" class="circle responsive-img">
+				</div>
+				<div class="col s10">
+					<h2 id="userWelcome"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script>
 		function onSubmit(details) {
@@ -56,6 +111,19 @@
 				mode: 'no-cors',
 				body: JSON.stringify({name, calorieUnit})
 			})
+		}
+
+		function loggedIn(name, picture) {
+			document.getElementById("userImage").src = picture
+			document.getElementById("userWelcome").innerHTML = `Hi, ${name}. Enter your activities here.`
+
+			document.getElementById("loggedOut").classList.add("hide")
+			document.getElementById("loggedIn").classList.remove("hide")
+		}
+
+		function loggedOut() {
+			document.getElementById("loggedOut").classList.remove("hide")
+			document.getElementById("loggedIn").classList.add("hide")
 		}
 	</script>
 </body>
