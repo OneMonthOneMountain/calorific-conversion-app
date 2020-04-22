@@ -31,7 +31,7 @@
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="./calorific-conversion.html">Home</a></li>
 					<li><a href="./leaderboard.html">Leaderboard</a></li>
-					<li class="active"><a href="./login.html">Login</a></li>
+					<li class="active"><a href="./user.html">You</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -42,6 +42,53 @@
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li class="active"><a href="./login.html">Login</a></li>
 	</ul>
+
+	<div class="section white">
+		<div class="row container">
+			<h1>Add some activities!</h1>
+			<form class="col s12" onsubmit="onSubmit()" action="javascript:void(0);">
+				<div class="row">
+					<div class="input-field col s6">
+						<input placeholder="Hubert Cumberdale" id="name" type="text" class="validate">
+						<label for="name">Name</label>
+					</div>
+					<div class="input-field col s6">
+						<input placeholder="100" id="calorie_unit" type="number" max="500" class="validate">
+						<label for="last_name">Calories To Walk 1km</label>
+					</div>
+					<div class="input-field col s6">
+						<button class="btn waves-effect waves-light" type="submit" name="action">
+							Submit
+							<i class="material-icons right">send</i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		function onSubmit(details) {
+			const name = document.getElementById("name").value
+			const calorieUnit = document.getElementById("calorie_unit").value
+
+			fetch('https://rpbrxnrfzb.execute-api.eu-west-2.amazonaws.com/default/register-user', {
+				method: 'post',
+				headers: {
+					"Content-type": "application/json; charset=UTF-8"
+				},
+				mode: 'no-cors',
+				body: JSON.stringify({name, calorieUnit})
+			}).then((response) => {
+				console.log("RESPONSE", response)
+				return response.json().then((body) => {
+					alert(body)
+				})
+			}).catch((error) => {
+				alert(error)
+			})
+		}
+	</script>
 </body>
 
 </html>
