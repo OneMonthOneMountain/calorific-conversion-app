@@ -68,7 +68,7 @@ resource "aws_api_gateway_resource" "get_user" {
 resource "aws_api_gateway_method" "get_user" {
   rest_api_id      = "${aws_api_gateway_rest_api.api.id}"
   resource_id      = "${aws_api_gateway_resource.get_user.id}"
-  http_method      = "GET"
+  http_method      = "POST"
   authorization    = "NONE"
   api_key_required = "false"
 }
@@ -88,7 +88,7 @@ resource "aws_lambda_permission" "get_user" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.get_user_lamba.arn}"
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "*"
+  source_arn    = "${aws_api_gateway_deployment.deployment.execution_arn}/*"
 
   lifecycle {
     create_before_destroy = true
