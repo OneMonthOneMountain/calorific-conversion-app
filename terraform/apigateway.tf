@@ -11,6 +11,8 @@ resource "aws_api_gateway_deployment" "deployment" {
   depends_on = [
     "aws_api_gateway_method.register_user",
     "aws_api_gateway_integration.register_user",
+    "aws_api_gateway_method.get_user",
+    "aws_api_gateway_integration.get_user",
   ]
 
   rest_api_id = "${aws_api_gateway_rest_api.api.id}"
