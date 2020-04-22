@@ -77,7 +77,6 @@
 				headers: {
 					"Content-type": "application/json; charset=UTF-8"
 				},
-				mode: 'no-cors',
 				body: JSON.stringify({name, calorieUnit})
 			}).then((response) => {
 				console.log("RESPONSE", response)
@@ -85,7 +84,7 @@
 					console.log("BODY", body)
 				})
 			}).catch((error) => {
-				alert(error)
+				console.log('ERROR', error)
 			})
 		}
 	</script>
