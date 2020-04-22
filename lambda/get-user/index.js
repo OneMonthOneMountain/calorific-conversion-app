@@ -9,18 +9,18 @@ const handler = async (event) => {
 		throw Error('Missing id')
 	}
 	
-	const user = await dynamo.get({
+	const { Item } = await dynamo.get({
 	    TableName: 'scores',
-	    Item: { "UserId": id }
+	    Key: { "UserId": id }
 	}).promise()
 	
 	return {
 		statusCode: 200,
 		body: JSON.stringify({
-			id: user.UserId,
-			name: user.Name,
-			activities: user.Activities,
-			calorieUnit: user.CalorieUnit
+			id: Item.UserId,
+			name: Item.Name,
+			activities: Item.Activities,
+			calorieUnit: Item.CalorieUnit
 		})
 	}
 }

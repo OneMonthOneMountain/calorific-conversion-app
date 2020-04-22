@@ -16,7 +16,7 @@ const handler = async (event) => {
 	        "UserId": user.id,
 	        "Name": user.name,
 	        "CalorieUnit": user.calorieUnit,
-	        "Activities": {}
+	        "Activities": user.activities
 	    }
 	}).promise()
 	
