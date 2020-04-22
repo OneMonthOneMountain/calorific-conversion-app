@@ -58,7 +58,7 @@
 					</div>
 					<div class="input-field col s6">
 						<button class="btn waves-effect waves-light" type="submit" name="action">
-							Submit
+							Update
 							<i class="material-icons right">send</i>
 						</button>
 					</div>
@@ -77,14 +77,8 @@
 				headers: {
 					"Content-type": "application/json; charset=UTF-8"
 				},
+				mode: 'no-cors',
 				body: JSON.stringify({name, calorieUnit})
-			}).then((response) => {
-				console.log("RESPONSE", response)
-				return response.json().then((body) => {
-					console.log("BODY", body)
-				})
-			}).catch((error) => {
-				console.log('ERROR', error)
 			})
 		}
 	</script>
