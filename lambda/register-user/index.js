@@ -15,7 +15,8 @@ const handler = async (event) => {
 	}).promise()
 	
 	return {
-		statusCode: 200
+		statusCode: 200,
+		body: JSON.stringify({ status: 'SUCCESS' })
 	}
 }
 
