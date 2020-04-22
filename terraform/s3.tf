@@ -19,10 +19,10 @@ resource "aws_s3_bucket_object" "leaderboard_page" {
   content_type = "text/html"
 }
 
-resource "aws_s3_bucket_object" "login_page" {
+resource "aws_s3_bucket_object" "user_page" {
   bucket = "omom-website"
-  key    = "login.html"
-  source = "../website/login.html"
+  key    = "user.html"
+  source = "../website/user.html"
 
   etag = "${filemd5("../website/user.html")}"
 
