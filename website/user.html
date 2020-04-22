@@ -23,6 +23,22 @@
 </head>
 
 <body>
+	<script>
+		window.fbAsyncInit = function () {
+			FB.init({
+				appId: '2551901968459697',
+				autoLogAppEvents: true,
+				xfbml: true,
+				version: 'v6.0'
+			});
+
+			FB.login(function (response) {
+				console.log("you are logged in")
+			});
+		};
+	</script>
+	<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper green">
