@@ -68,7 +68,7 @@
 	<ul class="sidenav" id="mobile">
 		<li><a href="./calorific-conversion.html">Home</a></li>
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
-		<li class="active"><a href="./user.html">You</a></li>
+		<li class="active"><a href="./user.html">Activities</a></li>
 	</ul>
 
 	<div id="loggedOut" class="hide">
@@ -82,10 +82,10 @@
 	</div>
 
 	<div id="loggedIn" class="hide">
-		<div class="section white">
-			<div class="container">
-				<div class="row">
-					<form class="col s12">
+		<div class="container">
+			<div class="row">
+				<form class="col s12" onsubmit="onSubmit()" action="javascript:void(0);">
+					<div class="section white">
 						<div class="input-field col s6">
 							<input class="active" disabled id="nameField" type="text">
 							<label for="nameField">Name</label>
@@ -94,43 +94,152 @@
 							<input required placeholder="100" class="active" id="calorieUnitField" type="number">
 							<label for="calorieUnitField">Calorie Unit</label>
 						</div>
-
-					</form>
-				</div>
+					</div>
+					<div class="section white">
+						<div id="activityField1NameUpper" class="input-field col s6">
+							<input placeholder="Morning Run" class="active" id="activityField1Name" type="text">
+							<label for="activityField1Name">Activity</label>
+						</div>
+						<div id="activityField1CaloriesUpper" class="input-field col s6">
+							<input placeholder="350" class="active" id="activityField1Calories" type="number">
+							<label for="activityField1Calories">Calories</label>
+						</div>
+						<div id="activityField2NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField2Name" type="text">
+							<label for="activityField2Name">Activity</label>
+						</div>
+						<div id="activityField2CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField2Calories" type="number">
+							<label for="activityField2Calories">Calories</label>
+						</div>
+						<div id="activityField3NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField3Name" type="text">
+							<label for="activityField3Name">Activity</label>
+						</div>
+						<div id="activityField3CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField3Calories" type="number">
+							<label for="activityField3Calories">Calories</label>
+						</div>
+						<div id="activityField4NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField4Name" type="text">
+							<label for="activityField4Name">Activity</label>
+						</div>
+						<div id="activityField4CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField4Calories" type="number">
+							<label for="activityField4Calories">Calories</label>
+						</div>
+						<div id="activityField5NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField5Name" type="text">
+							<label for="activityField5Name">Activity</label>
+						</div>
+						<div id="activityField5CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField5Calories" type="number">
+							<label for="activityField5Calories">Calories</label>
+						</div>
+						<div id="activityField6NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField6Name" type="text">
+							<label for="activityField6Name">Activity</label>
+						</div>
+						<div id="activityField6CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField6Calories" type="number">
+							<label for="activityField6Calories">Calories</label>
+						</div>
+						<div id="activityField7NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField7Name" type="text">
+							<label for="activityField7Name">Activity</label>
+						</div>
+						<div id="activityField7CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField7Calories" type="number">
+							<label for="activityField7Calories">Calories</label>
+						</div>
+						<div id="activityField8NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField8Name" type="text">
+							<label for="activityField8Name">Activity</label>
+						</div>
+						<div id="activityField8CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField8Calories" type="number">
+							<label for="activityField8Calories">Calories</label>
+						</div>
+						<div id="activityField9NameUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField9Name" type="text">
+							<label for="activityField10Name">Activity</label>
+						</div>
+						<div id="activityField9CaloriesUpper" class="input-field col s6 hide">
+							<input class="active" id="activityField9Calories" type="number">
+							<label for="activityField10Calories">Calories</label>
+						</div>
+					</div>
+					<div class="input-field col s6">
+						<button class="btn waves-effect waves-light" type="submit" name="action">
+							Update
+							<i class="material-icons right">send</i>
+						</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 
 	<script>
 		function onSubmit(details) {
-			const name = document.getElementById("name").value
-			const calorieUnit = document.getElementById("calorie_unit").value
+			console.log("Updating details...")
 
-			fetch('https://rpbrxnrfzb.execute-api.eu-west-2.amazonaws.com/default/register-user', {
-				method: 'post',
-				headers: {
-					"Content-type": "application/json; charset=UTF-8"
-				},
-				mode: 'no-cors',
-				body: JSON.stringify({name, calorieUnit})
+			const name = document.getElementById("nameField").value
+			const calorieUnit = parseInt(document.getElementById("calorieUnitField").value, 10)
+
+			const activities = {}
+
+			const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+			numbers.forEach((number) => {
+				const activityName = document.getElementById(`activityField${number}Name`).value
+				const activityCalories = parseInt(document.getElementById(`activityField${number}Calories`).value, 10)
+
+				if (activityName && activityCalories) {
+					activities[activityName] = activityCalories
+				}
 			})
+
+			console.log(activities)
+
+			fetch('https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/register-user', {
+				method: 'post',
+				body: JSON.stringify({id: window.userId, name, calorieUnit, activities})
+			}).then((response) => response.json().then((body) => {
+				console.log("successfully update", body)
+			}))
 		}
 
 		function loggedIn(userId, name, picture) {
+			window.userId = userId
+
 			document.getElementById("loggedOut").classList.add("hide")
 			document.getElementById("loggedIn").classList.remove("hide")
 
 			document.getElementById('nameField').value = name
 
-			fetch('https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=12345', {
+			fetch(`https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=${userId}`, {
 				method: 'post'
-			}).then((response) => {
-				return response.json().then((body) => {
-					console.log("BODY", body)
-				})
-			})
+			}).then((response) => response.json().then((body) => {
+				console.log("Fetched details from backend", body)
+				document.getElementById("calorieUnitField").value = body.calorieUnit
 
-			M.updateTextFields()
+				Object.entries(body.activities).forEach(([activity, calories], index) => {
+					document.getElementById(`activityField${index + 2}NameUpper`).classList.remove("hide")
+					document.getElementById(`activityField${index + 2}CaloriesUpper`).classList.remove("hide")
+
+					document.getElementById(`activityField${index + 1}Name`).value = activity
+					document.getElementById(`activityField${index + 1}Calories`).value = calories
+				})
+
+				const firstActivity = Object.entries(body.activities)[0]
+
+				M.updateTextFields()
+				console.log("Successfully fetched info")
+			})).catch((error) => {
+				console.log(error)
+				M.updateTextFields()
+			})
 		}
 
 		function loggedOut() {
