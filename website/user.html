@@ -30,42 +30,36 @@
 		window.fbAsyncInit = function () {
 			console.log('Initialising FB...')
 
-			FB.init({
-				appId: '2551901968459697',
-				version: 'v6.0',
-				status: true,
-			});
-
 			FB.Event.subscribe('auth.statusChange', (response) => {
 				if (response.authResponse) {
 					FB.api('/me', {fields: 'name,picture'}, (user) => {
 						console.log("Logged in.", user)
 
-						loggedIn(user.name, user.picture.data.url)
+						loggedIn(user.id, user.name, user.picture.data.url)
 					})
 				} else {
 					console.log("Logged out.")
 					loggedOut()
 				}
 			})
+
+			FB.init({
+				appId: '2551901968459697',
+				version: 'v6.0',
+				status: true,
+			});
 		};
 	</script>
 
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper green">
-				<a href="./calorific-conversion.html" class="brand-logo center">OMOM Pandemic</a>
+				<a href="./calorific-conversion.html" class="brand-logo center">Activities</a>
 				<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="./calorific-conversion.html">Home</a></li>
 					<li><a href="./leaderboard.html">Leaderboard</a></li>
-					<li class="active"><a href="./user.html">You</a></li>
-					<li>
-						<div id="loginButton1" class="fb-login-button hide"
-							style="height: min-content;line-height: normal;padding-left: 12px;padding-right: 12px;"
-							data-size="small" data-button-type="login_with" data-layout="rounded"
-							data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
-					</li>
+					<li class="active"><a href="./user.html">Activies</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -75,24 +69,33 @@
 		<li><a href="./calorific-conversion.html">Home</a></li>
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li class="active"><a href="./user.html">You</a></li>
-		<li>
-			<div id="loginButton2" class="fb-login-button" data-size="small" data-button-type="login_with"
-				data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false" data-width=""
-				style="display: block; margin-left: auto; margin-right: auto; width: min-content;"></div>
-		</li>
 	</ul>
 
-	<div class="section white">
-		<div class="row container">
-			<div id="loggedOut" class="hide">
-				<h1>You need to log in...</h1>
+	<div id="loggedOut" class="hide">
+		<div class="section white">
+			<div class="row container">
+				<p>To register your activities you need to log in.<p>
+						<div id="loginButton" class="fb-login-button" data-size="large" data-button-type="continue_with"
+							data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>
 			</div>
-			<div id="loggedIn" class="hide">
-				<div class="col s2">
-					<img id="userImage" src="#" alt="" class="circle responsive-img">
-				</div>
-				<div class="col s10">
-					<h2 id="userWelcome"></h2>
+		</div>
+	</div>
+
+	<div id="loggedIn" class="hide">
+		<div class="section white">
+			<div class="container">
+				<div class="row">
+					<form class="col s12">
+						<div class="input-field col s6">
+							<input class="active" disabled id="nameField" type="text">
+							<label for="nameField">Name</label>
+						</div>
+						<div class="input-field col s6">
+							<input required placeholder="100" class="active" id="calorieUnitField" type="number">
+							<label for="calorieUnitField">Calorie Unit</label>
+						</div>
+
+					</form>
 				</div>
 			</div>
 		</div>
@@ -113,21 +116,18 @@
 			})
 		}
 
-		function loggedIn(name, picture) {
-			document.getElementById("userImage").src = picture
-			document.getElementById("userWelcome").innerHTML = `Hi, ${name}. Enter your activities here.`
-
+		function loggedIn(userId, name, picture) {
 			document.getElementById("loggedOut").classList.add("hide")
 			document.getElementById("loggedIn").classList.remove("hide")
-			document.getElementById("loginButton1").classList.add("hide")
-			document.getElementById("loginButton2").classList.add("hide")
+
+			document.getElementById('nameField').value = name
+
+			M.updateTextFields()
 		}
 
 		function loggedOut() {
 			document.getElementById("loggedOut").classList.remove("hide")
 			document.getElementById("loggedIn").classList.add("hide")
-			document.getElementById("loginButton1").classList.remove("hide")
-			document.getElementById("loginButton2").classList.remove("hide")
 		}
 	</script>
 </body>
