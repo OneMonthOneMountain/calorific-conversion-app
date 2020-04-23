@@ -60,6 +60,7 @@
 					<li><a href="./calorific-conversion.html">Home</a></li>
 					<li><a href="./leaderboard.html">Leaderboard</a></li>
 					<li class="active"><a href="./user.html">Activities</a></li>
+					<li><a href="./hiking-calculator.html">Calculator</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -69,6 +70,7 @@
 		<li><a href="./calorific-conversion.html">Home</a></li>
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li class="active"><a href="./user.html">Activities</a></li>
+		<li><a href="./hiking-calculator.html">Calculator</a></li>
 	</ul>
 
 	<div id="loggedOut" class="hide">
@@ -177,6 +179,15 @@
 					</div>
 				</form>
 			</div>
+			<div>
+				<div class="omni-calculator" data-calculator="sports/hiking" data-width="300" data-config='{"distance":{"default":"1"},"avg_grade":{"default":"10"}}' data-currency="GBP" data-show-row-controls="false" data-version="3" data-t="1587637604695">
+					<div class="omni-calculator-header">Hiking Calculator</div>
+					<div class="omni-calculator-footer">
+					  <a href="https://www.omnicalculator.com/sports/hiking" target="_blank"><img alt="Omni" class="omni-calculator-logo" src="https://cdn.omnicalculator.com/embed/omni-calculator-logo-long.svg" /></a>
+					</div>
+				  </div>
+				  <script async src="https://cdn.omnicalculator.com/sdk.js"></script>
+			</div>
 		</div>
 	</div>
 
@@ -207,21 +218,18 @@
 				body: JSON.stringify({id: window.userId, name, calorieUnit, activities})
 			}).then((response) => response.json().then((body) => {
 				console.log("successfully update", body)
+
+				updateForm()
 			}))
 		}
 
-		function loggedIn(userId, name, picture) {
-			window.userId = userId
-
-			document.getElementById("loggedOut").classList.add("hide")
-			document.getElementById("loggedIn").classList.remove("hide")
-
-			document.getElementById('nameField').value = name
-
+		function updateForm(name) {
 			fetch(`https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=${userId}`, {
 				method: 'post'
 			}).then((response) => response.json().then((body) => {
 				console.log("Fetched details from backend", body)
+
+				document.getElementById('nameField').value = name || body.name
 				document.getElementById("calorieUnitField").value = body.calorieUnit
 
 				Object.entries(body.activities).forEach(([activity, calories], index) => {
@@ -232,14 +240,22 @@
 					document.getElementById(`activityField${index + 1}Calories`).value = calories
 				})
 
-				const firstActivity = Object.entries(body.activities)[0]
+				M.updateTextFields()
+
+				document.getElementById("loggedOut").classList.add("hide")
+				document.getElementById("loggedIn").classList.remove("hide")
+			})).catch((error) => {
+				alert("Error: ", error.message)
 
 				M.updateTextFields()
-				console.log("Successfully fetched info")
-			})).catch((error) => {
-				console.log(error)
-				M.updateTextFields()
 			})
+		}
+
+		function loggedIn(userId, name, picture) {
+			window.userId = userId
+			window.userPicture = picture
+
+			updateForm(name)
 		}
 
 		function loggedOut() {
