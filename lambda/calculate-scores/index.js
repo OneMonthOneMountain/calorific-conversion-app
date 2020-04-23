@@ -12,7 +12,7 @@ const calculateData = (score) => {
 
     const calories = calculateCalories(activities)
     
-    const ascent = Math.round((calories / CalorieUnit) * 50)
+    const ascent = Math.round((calories / CalorieUnit) * 100)
     const distance =  Math.round((calories / CalorieUnit) * 10) / 10
     
     return { id, name, calories, distance, ascent, activities }

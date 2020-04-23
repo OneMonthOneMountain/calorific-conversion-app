@@ -105,24 +105,32 @@
 
 	<div id="loggedIn" class="hide">
 		<div class="container">
-			<div style="margin-top: 4vh;" class="row">
+			<div style="margin-top: 4vh; margin-bottom: 0" class="row">
 				<div class="col s12">
 					<p class="center-align flow-text">
 						Hi, <dev id="nameSentence"></dev>! Get yourself on the <a
-							href="./leaderboard.html">leaderboard</a> by entering your activities
-						below. Each activity needs a description and the number of calories burned. We recommend this <a
-							href="https://www.omnicalculator.com/sports/calories-burned">calculator</a>, although you
+							href="./leaderboard.html">leaderboard</a> by entering some activities
+						below. We recommend this <a
+							href="https://www.omnicalculator.com/sports/calories-burned">calculator</a> for calories,
+						although you
 						can
 						use whatever works best for you.
 						Don't forget to calculate your hiking calories to see how far you've hiked!
 					</p>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col s12 m6 offset-m3">
+					<button style="width: -webkit-fill-available;" data-target="modal1"
+						class="btn modal-trigger green">Find Your Hiking Calories</button>
+				</div>
+			</div>
+
 			<form class="col s12" onsubmit="onSubmit()" action="javascript:void(0);">
 				<div class="row">
 					<h5>Details:</h5>
 				</div>
-				<div class="row" style="margin-bottom: 0;">
+				<div class="row">
 					<div class="input-field col s6">
 						<input class="active" id="nameField" type="text">
 						<label for="nameField">Name</label>
@@ -133,12 +141,7 @@
 						<label for="calorieUnitField">Hiking Calories</label>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col s12">
-						<button data-target="modal1" class="btn modal-trigger green">Calculate Hiking Calories</button>
-					</div>
-				</div>
-				<div style="margin-top: 5rem" class="row">
+				<div style="margin-top: 1rem" class="row">
 					<h5>Activities:</h5>
 				</div>
 				<div id="activityField1" class="row hide" style="margin-bottom: 0;">
@@ -251,12 +254,13 @@
 				Calculate your Hiking Calories</h4>
 			<p class="flow-text" style="padding-left: 6vw; padding-right: 6vw; padding-top: 1vh; padding-bottom: 1vh;">
 				Your Hiking
-				Calories are the rough number of calories burnt from hiking up a 1km trail with an average grade of 15%.
-				Fill out the widget below, copy the 'Total burned' field and paste it into your activity sheet.</p>
+				Calories are the rough number of calories burned from hiking up a 1km trail with an average grade of
+				20%.
+				Fill out the widget below, copy the total burned calories, and paste it into your details.</p>
 		</div>
 		<div style="margin:auto; margin-bottom:1em; width:fit-content">
 			<div class="omni-calculator" data-calculator="sports/hiking" data-width="300"
-				data-config='{"distance":{"default":"1","locked":false},"elevation_gain":{"advanced":true},"avg_grade":{"locked":false,"default":"15"},"total_equivalent":{"autosaved":false,"advanced":true},"weight":{"advanced":false},"Calories_up_adjusted":{"advanced":true},"Calories_down_adjusted":{"advanced":true},"weight_lost":{"advanced":true}}'
+				data-config='{"distance":{"default":"1","locked":false},"elevation_gain":{"advanced":true},"avg_grade":{"locked":false,"default":"20"},"total_equivalent":{"autosaved":false,"advanced":true},"weight":{"advanced":false},"Calories_up_adjusted":{"advanced":true},"Calories_down_adjusted":{"advanced":true},"weight_lost":{"advanced":true}}'
 				data-currency="GBP" data-show-row-controls="false" data-version="3" data-t="1587639125804">
 				<div class="omni-calculator-header">Hiking Calories</div>
 				<div class="omni-calculator-footer">

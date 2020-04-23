@@ -105,6 +105,8 @@
 			scores.forEach((person, index) => {
 				var row = table.insertRow(index + 1)
 
+				row.style.cursor = 'pointer'
+
 				row.addEventListener("click", () => onUserClick(person))
 
 				var cell1 = row.insertCell(0);
