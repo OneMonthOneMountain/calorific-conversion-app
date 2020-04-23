@@ -4,18 +4,18 @@ const { DocumentClient } = require('aws-sdk/clients/dynamodb')
 const s3 = new S3Client()
 const dynamo = new DocumentClient()
 
-const calculateCalories = (activities) => Object.values(activities).reduce((a, b) => a + b, 0)
+const calculateCalories = (activities) => activities.map((activity) => activity.calories).reduce((a, b) => a + b, 0)
 
 const calculateData = (score) => {
     console.log('Score for user: ', JSON.stringify(score))
-    const { UserId: id, Name: name, Activities, CalorieUnit } = score
+    const { UserId: id, Name: name, Activities: activities, CalorieUnit } = score
 
-    const calories = calculateCalories(Activities)
+    const calories = calculateCalories(activities)
     
     const ascent = Math.round((calories / CalorieUnit) * 50)
     const distance =  Math.round((calories / CalorieUnit) * 10) / 10
     
-    return { id, name, calories, distance, ascent }
+    return { id, name, calories, distance, ascent, activities }
 }
 
 const handler = async () => {

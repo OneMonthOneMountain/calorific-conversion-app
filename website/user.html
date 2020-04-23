@@ -265,7 +265,7 @@
 			const name = document.getElementById("nameField").value
 			const calorieUnit = parseInt(document.getElementById("calorieUnitField").value, 10)
 
-			const activities = {}
+			const activities = []
 
 			const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -274,7 +274,7 @@
 				const activityCalories = parseInt(document.getElementById(`activityField${number}Calories`).value, 10)
 
 				if (activityName && activityCalories) {
-					activities[activityName] = activityCalories
+					activities.push({description: activityName, calories: activityCalories})
 				}
 			})
 
@@ -288,45 +288,61 @@
 				console.log("successfully update", body)
 
 				updatePage()
-			}))
+			})).catch((error) => {
+				alert(`Error: ${error.message}`)
+			})
 		}
 
 		function updatePage(name) {
 			fetch(`https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=${userId}`, {
 				method: 'post'
-			}).then((response) => response.json().then((body) => {
-				console.log("Fetched details from backend", body)
+			}).then((response) => {
+				return response.json().then((body) => {
+					console.log("Fetched details from backend", body)
 
-				document.getElementById('nameSentence').innerHTML = body.name || name
-				document.getElementById('nameField').value = body.name || name
-				document.getElementById("calorieUnitField").value = body.calorieUnit
+					document.getElementById('nameSentence').innerHTML = body.name || name
+					document.getElementById('nameField').value = body.name || name
+					document.getElementById("calorieUnitField").value = body.calorieUnit
 
-				const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+					const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-				numbers.forEach((number) => {
-					const activities = Object.entries(body.activities)
+					numbers.forEach((number) => {
+						const activities = body.activities
 
-					if (activities[number]) {
-						document.getElementById(`activityField${number + 1}Name`).value = activities[number][0]
-						document.getElementById(`activityField${number + 1}Calories`).value = activities[number][1]
-					}
+						if (activities[number]) {
+							document.getElementById(`activityField${number + 1}Name`).value = activities[number].description
+							document.getElementById(`activityField${number + 1}Calories`).value = activities[number].calories
+						}
 
-					if (number <= activities.length) {
-						document.getElementById(`activityField${number + 1}`).classList.remove("hide")
-					} else {
-						document.getElementById(`activityField${number + 1}`).classList.add("hide")
-					}
+						if (number <= activities.length) {
+							document.getElementById(`activityField${number + 1}`).classList.remove("hide")
+						} else {
+							document.getElementById(`activityField${number + 1}`).classList.add("hide")
+						}
+					})
+
+					M.updateTextFields()
+
+					document.getElementById("loggedOut").classList.add("hide")
+					document.getElementById("loggedIn").classList.remove("hide")
+				}).catch((error) => {
+					updatePageNoUser(name)
 				})
-
-				M.updateTextFields()
-
-				document.getElementById("loggedOut").classList.add("hide")
-				document.getElementById("loggedIn").classList.remove("hide")
-			})).catch((error) => {
-				alert("Error: ", error.message)
-
-				M.updateTextFields()
+			}).catch((error) => {
+				updatePageNoUser(name)
 			})
+		}
+
+		function updatePageNoUser(name) {
+			document.getElementById('nameSentence').innerHTML = name
+			document.getElementById('nameField').value = name
+
+			document.getElementById(`activityField1`).classList.remove("hide")
+
+			M.updateTextFields()
+
+			document.getElementById("loggedOut").classList.add("hide")
+			document.getElementById("loggedIn").classList.remove("hide")
 		}
 
 		function loggedIn(userId, name, picture) {
