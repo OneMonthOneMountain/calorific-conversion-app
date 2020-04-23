@@ -7,7 +7,7 @@ const dynamo = new DocumentClient()
 const calculateCalories = (activities) => activities.map((activity) => activity.calories).reduce((a, b) => a + b, 0)
 
 const calculateData = (score) => {
-    console.log('Score for user: ', JSON.stringify(score))
+    console.log('Scores for user: ', JSON.stringify(score))
     const { UserId: id, Name: name, Activities: activities, CalorieUnit } = score
 
     const calories = calculateCalories(activities)
