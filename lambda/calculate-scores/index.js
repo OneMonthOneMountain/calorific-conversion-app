@@ -8,14 +8,14 @@ const calculateCalories = (activities) => Object.values(activities).reduce((a, b
 
 const calculateData = (score) => {
     console.log('Score for user: ', JSON.stringify(score))
-    const { Name: name, Activities, CalorieUnit } = score
+    const { UserId: id, Name: name, Activities, CalorieUnit } = score
 
     const calories = calculateCalories(Activities)
     
     const ascent = Math.round((calories / CalorieUnit) * 50)
     const distance =  Math.round((calories / CalorieUnit) * 10) / 10
     
-    return { name, calories, distance, ascent }
+    return { id, name, calories, distance, ascent }
 }
 
 const handler = async () => {

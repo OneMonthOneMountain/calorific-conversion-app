@@ -87,13 +87,17 @@
 	<div id="loggedIn" class="hide">
 		<div class="container">
 			<div style="margin-top: 4vh;" class="row">
-				<p class="center-align">
-					Hi, <dev id="nameSentence"></dev>! Get yourself on the leaderboard by entering your activities
-					below. Each activity needs a description and the number of calories burned. We recommend this <a
-						href="https://www.omnicalculator.com/sports/calories-burned">calculator</a>, although you can
-					use whatever works best for you.
-					Don't forget to calculate your hiking calories to see how far you've hiked!
-				</p>
+				<div class="col s12">
+					<p class="center-align flow-text">
+						Hi, <dev id="nameSentence"></dev>! Get yourself on the <a
+							href="./leaderboard.html">leaderboard</a> by entering your activities
+						below. Each activity needs a description and the number of calories burned. We recommend this <a
+							href="https://www.omnicalculator.com/sports/calories-burned">calculator</a>, although you
+						can
+						use whatever works best for you.
+						Don't forget to calculate your hiking calories to see how far you've hiked!
+					</p>
+				</div>
 			</div>
 			<form class="col s12" onsubmit="onSubmit()" action="javascript:void(0);">
 				<div class="row">
@@ -112,11 +116,10 @@
 				</div>
 				<div class="row">
 					<div class="col s12">
-						<a style="margin-bottom:2rem;" class="waves-effect waves-light btn-small modal-trigger green"
-							href="#modal1">Calculate Hiking Calories</a>
+						<button data-target="modal1" class="btn modal-trigger green">Calculate Hiking Calories</button>
 					</div>
 				</div>
-				<div class="row">
+				<div style="margin-top: 5rem" class="row">
 					<h5>Activities:</h5>
 				</div>
 				<div id="activityField1" class="row hide" style="margin-bottom: 0;">
@@ -210,11 +213,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="input-field col s6">
+					<div class="col s12">
 						<button class="btn waves-effect waves-light green" type="submit" name="action">
 							Update
 							<i class="material-icons right">send</i>
 						</button>
+						<a href="leaderboard.html" style="margin-left: 1rem;"
+							class="waves-effect waves-light btn green">Leaderboard</a>
 					</div>
 				</div>
 			</form>
@@ -225,7 +230,8 @@
 		<div style="padding: 0;" class="modal-content">
 			<h4 class="green white-text center-align" style="padding-top:1vh; padding-bottom:1vh; line-height: 1.2em;">
 				Calculate your Hiking Calories</h4>
-			<p style="padding-left: 6vw; padding-right: 6vw; padding-top: 1vh; padding-bottom: 1vh;">Your Hiking
+			<p class="flow-text" style="padding-left: 6vw; padding-right: 6vw; padding-top: 1vh; padding-bottom: 1vh;">
+				Your Hiking
 				Calories are the rough number of calories burnt from hiking up a 1km trail with an average grade of 15%.
 				Fill out the widget below, copy the 'Total burned' field and paste it into your activity sheet.</p>
 		</div>
