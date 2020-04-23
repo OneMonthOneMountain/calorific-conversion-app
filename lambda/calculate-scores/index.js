@@ -27,11 +27,17 @@ const handler = async () => {
         const unsortedScores = rawScores.Items.map(calculateData)
         
         const scores = unsortedScores.sort((a, b) => b.calories - a.calories)
+
+        const totals = scores.reduce((a, b) => {
+            a.calories += b.calories
+            a.distance += b.distance
+            a.ascent += b.ascent
+        }, { calories: 0, distance: 0, ascent: 0 })
         
         await s3.putObject({
             Bucket: 'omom-website',
             Key: 'scores.json',
-            Body: JSON.stringify({ scores }),
+            Body: JSON.stringify({ scores, totals }),
             ContentType: 'application/json',
             CacheControl: 'no-cache'
         }).promise()
