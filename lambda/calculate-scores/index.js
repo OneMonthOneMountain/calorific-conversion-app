@@ -32,6 +32,8 @@ const handler = async () => {
             a.calories += b.calories
             a.distance += b.distance
             a.ascent += b.ascent
+
+            return a
         }, { calories: 0, distance: 0, ascent: 0 })
         
         await s3.putObject({
