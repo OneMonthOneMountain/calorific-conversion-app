@@ -39,7 +39,7 @@
 	<div class="container">
 		<div class="row" style="margin-top: 5vh;">
 			<div class="col s12">
-				<table id="data-table">
+				<table class="highlight" id="data-table">
 					<tr>
 						<th>Name</th>
 						<th>Distance (km)</th>
@@ -71,10 +71,18 @@
 			<h4 class="green white-text center-align" style="padding-top:1vh; padding-bottom:1vh; line-height: 1.2em;">
 				<span id="modalName"></span>'s Activities
 			</h4>
-			<div class="row">
-				<div class="col s4">
-					<img id="modalPicture" />
-				</div>
+			<div class="container">
+				<table class="striped" id="modal-data-table">
+					<thead>
+						<tr>
+							<th>Activity</th>
+							<th>Calories</th>
+						</tr>
+					</thead>
+					<tbody id="modal-table-body">
+
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -115,7 +123,22 @@
 			console.log(user)
 
 			document.getElementById('modalName').innerHTML = user.name
-			
+
+			const tableBody = document.getElementById('modal-table-body')
+
+			tableBody.innerHTML = ""
+
+			user.activities.forEach(({description, calories}, index) => {
+				var row = document.createElement('TR')
+
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+
+				cell1.innerHTML = description
+				cell2.innerHTML = calories
+
+				tableBody.appendChild(row)
+			})
 
 			const modalHtml = document.getElementById('modal1')
 

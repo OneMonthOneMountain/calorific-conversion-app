@@ -27,8 +27,6 @@
 
 <body>
 	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous"
-		src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=2551901968459697&autoLogAppEvents=1"></script>
 	<script>
 		window.fbAsyncInit = function () {
 			console.log('Initialising FB...')
@@ -74,12 +72,33 @@
 		<li class="active"><a href="./user.html">Activities</a></li>
 	</ul>
 
+	<div id="loader" style="position: absolute; left:50%; top:50%; margin: -75px 0 0 -75px;">
+		<div style="width: 150px; height: 150px" class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div>
+				<div class="gap-patch">
+					<div class="circle"></div>
+				</div>
+				<div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<div id="loggedOut" class="hide">
 		<div class="section white">
-			<div class="row container">
-				<p>To register your activities you need to log in.<p>
-						<div id="loginButton" class="fb-login-button" data-size="large" data-button-type="continue_with"
-							data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>
+			<div class="container">
+				<div class="col s12" style="margin-top: 10%;">
+					<p class="center-align flow-text">To register your activities and get on the leaderboard you first
+						need to log in.<p>
+				</div>
+				<div style="width: min-content; margin: auto; margin-top: 10%;">
+					<div id="loginButton" class="fb-login-button" data-size="large" data-button-type="continue_with"
+						data-layout="default" data-auto-logout-link="true" data-use-continue-as="true"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -246,7 +265,6 @@
 							src="https://cdn.omnicalculator.com/embed/omni-calculator-logo-long.svg" /></a>
 				</div>
 			</div>
-			<script async src="https://cdn.omnicalculator.com/sdk.js"></script>
 		</div>
 		<div class="modal-footer">
 			<a href="#!" onClick="calculateHikingCalories()" class="modal-close waves-effect waves-green btn-flat">I've
@@ -323,6 +341,7 @@
 
 					M.updateTextFields()
 
+					document.getElementById("loader").classList.add("hide")
 					document.getElementById("loggedOut").classList.add("hide")
 					document.getElementById("loggedIn").classList.remove("hide")
 				}).catch((error) => {
@@ -341,6 +360,7 @@
 
 			M.updateTextFields()
 
+			document.getElementById("loader").classList.add("hide")
 			document.getElementById("loggedOut").classList.add("hide")
 			document.getElementById("loggedIn").classList.remove("hide")
 		}
@@ -353,10 +373,16 @@
 		}
 
 		function loggedOut() {
+			document.getElementById("loader").classList.add("hide")
 			document.getElementById("loggedOut").classList.remove("hide")
 			document.getElementById("loggedIn").classList.add("hide")
 		}
 	</script>
+
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=2551901968459697&autoLogAppEvents=1"></script>
+
+	<script async defer crossorigin="anonymous" src="https://cdn.omnicalculator.com/sdk.js"></script>
 </body>
 
 </html>
