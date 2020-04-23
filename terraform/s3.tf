@@ -28,13 +28,3 @@ resource "aws_s3_bucket_object" "user_page" {
 
   content_type = "text/html"
 }
-
-resource "aws_s3_bucket_object" "calculator" {
-  bucket = "omom-website"
-  key    = "hiking-calculator.html"
-  source = "../website/hiking-calculator.html"
-
-  etag = "${filemd5("../website/hiking-calculator.html")}"
-
-  content_type = "text/html"
-}

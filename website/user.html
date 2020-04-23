@@ -18,6 +18,9 @@
 		document.addEventListener('DOMContentLoaded', function () {
 			var elems = document.querySelectorAll('.sidenav');
 			var instances = M.Sidenav.init(elems);
+
+			var elems = document.querySelectorAll('.modal');
+			var instances = M.Modal.init(elems);
 		});
 	</script>
 </head>
@@ -54,13 +57,12 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper green">
-				<a href="./calorific-conversion.html" class="brand-logo center">OMOM</a>
+				<a href="./calorific-conversion.html" class="brand-logo center">Activities</a>
 				<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="./calorific-conversion.html">Home</a></li>
 					<li><a href="./leaderboard.html">Leaderboard</a></li>
 					<li class="active"><a href="./user.html">Activities</a></li>
-					<li><a href="./hiking-calculator.html">Calculator</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -70,7 +72,6 @@
 		<li><a href="./calorific-conversion.html">Home</a></li>
 		<li><a href="./leaderboard.html">Leaderboard</a></li>
 		<li class="active"><a href="./user.html">Activities</a></li>
-		<li><a href="./hiking-calculator.html">Calculator</a></li>
 	</ul>
 
 	<div id="loggedOut" class="hide">
@@ -85,105 +86,174 @@
 
 	<div id="loggedIn" class="hide">
 		<div class="container">
-			<div class="row">
-				<form class="col s12" onsubmit="onSubmit()" action="javascript:void(0);">
-					<div class="section white">
-						<div class="input-field col s6">
-							<input class="active" disabled id="nameField" type="text">
-							<label for="nameField">Name</label>
-						</div>
-						<div class="input-field col s6">
-							<input required placeholder="100" class="active" id="calorieUnitField" type="number">
-							<label for="calorieUnitField">Calorie Unit</label>
-						</div>
-					</div>
-					<div class="section white">
-						<div id="activityField1NameUpper" class="input-field col s6">
-							<input placeholder="Morning Run" class="active" id="activityField1Name" type="text">
-							<label for="activityField1Name">Activity</label>
-						</div>
-						<div id="activityField1CaloriesUpper" class="input-field col s6">
-							<input placeholder="350" class="active" id="activityField1Calories" type="number">
-							<label for="activityField1Calories">Calories</label>
-						</div>
-						<div id="activityField2NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField2Name" type="text">
-							<label for="activityField2Name">Activity</label>
-						</div>
-						<div id="activityField2CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField2Calories" type="number">
-							<label for="activityField2Calories">Calories</label>
-						</div>
-						<div id="activityField3NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField3Name" type="text">
-							<label for="activityField3Name">Activity</label>
-						</div>
-						<div id="activityField3CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField3Calories" type="number">
-							<label for="activityField3Calories">Calories</label>
-						</div>
-						<div id="activityField4NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField4Name" type="text">
-							<label for="activityField4Name">Activity</label>
-						</div>
-						<div id="activityField4CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField4Calories" type="number">
-							<label for="activityField4Calories">Calories</label>
-						</div>
-						<div id="activityField5NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField5Name" type="text">
-							<label for="activityField5Name">Activity</label>
-						</div>
-						<div id="activityField5CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField5Calories" type="number">
-							<label for="activityField5Calories">Calories</label>
-						</div>
-						<div id="activityField6NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField6Name" type="text">
-							<label for="activityField6Name">Activity</label>
-						</div>
-						<div id="activityField6CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField6Calories" type="number">
-							<label for="activityField6Calories">Calories</label>
-						</div>
-						<div id="activityField7NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField7Name" type="text">
-							<label for="activityField7Name">Activity</label>
-						</div>
-						<div id="activityField7CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField7Calories" type="number">
-							<label for="activityField7Calories">Calories</label>
-						</div>
-						<div id="activityField8NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField8Name" type="text">
-							<label for="activityField8Name">Activity</label>
-						</div>
-						<div id="activityField8CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField8Calories" type="number">
-							<label for="activityField8Calories">Calories</label>
-						</div>
-						<div id="activityField9NameUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField9Name" type="text">
-							<label for="activityField10Name">Activity</label>
-						</div>
-						<div id="activityField9CaloriesUpper" class="input-field col s6 hide">
-							<input class="active" id="activityField9Calories" type="number">
-							<label for="activityField10Calories">Calories</label>
-						</div>
+			<div style="margin-top: 4vh;" class="row">
+				<p class="center-align">
+					Hi, <dev id="nameSentence"></dev>! Get yourself on the leaderboard by entering your activities
+					below. Each activity needs a description and the number of calories burned. We recommend this <a
+						href="https://www.omnicalculator.com/sports/calories-burned">calculator</a>, although you can
+					use whatever works best for you.
+					Don't forget to calculate your hiking calories to see how far you've hiked!
+				</p>
+			</div>
+			<form class="col s12" onsubmit="onSubmit()" action="javascript:void(0);">
+				<div class="row">
+					<h5>Details:</h5>
+				</div>
+				<div class="row" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="nameField" type="text">
+						<label for="nameField">Name</label>
 					</div>
 					<div class="input-field col s6">
-						<button class="btn waves-effect waves-light" type="submit" name="action">
+						<input required placeholder="100" class="active" id="calorieUnitField" type="number"
+							step="0.01">
+						<label for="calorieUnitField">Hiking Calories</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12">
+						<a style="margin-bottom:2rem;" class="waves-effect waves-light btn-small modal-trigger green"
+							href="#modal1">calculate hiking calories</a>
+					</div>
+				</div>
+				<div class="row">
+					<h5>Activities:</h5>
+				</div>
+				<div id="activityField1" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input placeholder="Morning Run" class="active" id="activityField1Name" type="text">
+						<label for="activityField1Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input placeholder="350" class="active" id="activityField1Calories" type="number">
+						<label for="activityField1Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField2" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField2Name" type="text">
+						<label for="activityField2Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField2Calories" type="number">
+						<label for="activityField2Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField3" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField3Name" type="text">
+						<label for="activityField3Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField3Calories" type="number">
+						<label for="activityField3Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField4" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField4Name" type="text">
+						<label for="activityField4Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField4Calories" type="number">
+						<label for="activityField4Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField5" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField5Name" type="text">
+						<label for="activityField5Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField5Calories" type="number">
+						<label for="activityField5Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField6" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField6Name" type="text">
+						<label for="activityField6Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField6Calories" type="number">
+						<label for="activityField6Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField7" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField7Name" type="text">
+						<label for="activityField7Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField7Calories" type="number">
+						<label for="activityField7Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField8" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField8Name" type="text">
+						<label for="activityField8Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField8Calories" type="number">
+						<label for="activityField8Calories">Calories</label>
+					</div>
+				</div>
+				<div id="activityField9" class="row hide" style="margin-bottom: 0;">
+					<div class="input-field col s6">
+						<input class="active" id="activityField9Name" type="text">
+						<label for="activityField10Name">Activity</label>
+					</div>
+					<div class="input-field col s6">
+						<input class="active" id="activityField9Calories" type="number">
+						<label for="activityField10Calories">Calories</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<button class="btn waves-effect waves-light green" type="submit" name="action">
 							Update
 							<i class="material-icons right">send</i>
 						</button>
 					</div>
-				</form>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div id="modal1" class="modal">
+		<div style="padding: 0;" class="modal-content">
+			<h4 class="green white-text center-align" style="padding-top:1vh; padding-bottom:1vh; line-height: 1.2em;">
+				Calculate your Hiking Calories</h4>
+			<p style="padding-left: 6vw; padding-right: 6vw; padding-top: 1vh; padding-bottom: 1vh;">Your Hiking
+				Calories are the rough number of calories burnt from hiking up a 1km trail with an average grade of 15%.
+				Fill out the widget below, copy the 'Total burned' field and paste it into your activity sheet.</p>
+		</div>
+		<div style="margin:auto; margin-bottom:1em; width:fit-content">
+			<div class="omni-calculator" data-calculator="sports/hiking" data-width="300"
+				data-config='{"distance":{"default":"1","locked":false},"elevation_gain":{"advanced":true},"avg_grade":{"locked":false,"default":"15"},"total_equivalent":{"autosaved":false,"advanced":true},"weight":{"advanced":false},"Calories_up_adjusted":{"advanced":true},"Calories_down_adjusted":{"advanced":true},"weight_lost":{"advanced":true}}'
+				data-currency="GBP" data-show-row-controls="false" data-version="3" data-t="1587639125804">
+				<div class="omni-calculator-header">Hiking Calories</div>
+				<div class="omni-calculator-footer">
+					<a href="https://www.omnicalculator.com/sports/hiking" target="_blank"><img alt="Omni"
+							class="omni-calculator-logo"
+							src="https://cdn.omnicalculator.com/embed/omni-calculator-logo-long.svg" /></a>
+				</div>
 			</div>
+			<script async src="https://cdn.omnicalculator.com/sdk.js"></script>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" onClick="calculateHikingCalories()" class="modal-close waves-effect waves-green btn-flat">I've
+				copied my hiking calories</a>
 		</div>
 	</div>
 
 	<script>
-		function onSubmit(details) {
+		function calculateHikingCalories() {
+			console.log("Calculating hiking calories...")
+		}
+
+		function onSubmit() {
 			console.log("Updating details...")
 
 			const name = document.getElementById("nameField").value
@@ -202,33 +272,44 @@
 				}
 			})
 
-			console.log(activities)
+			const details = {id: window.userId, name, calorieUnit, activities}
+			console.log("Updating details...", JSON.stringify(details))
 
 			fetch('https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/register-user', {
 				method: 'post',
-				body: JSON.stringify({id: window.userId, name, calorieUnit, activities})
+				body: JSON.stringify(details)
 			}).then((response) => response.json().then((body) => {
 				console.log("successfully update", body)
 
-				updateForm()
+				updatePage()
 			}))
 		}
 
-		function updateForm(name) {
+		function updatePage(name) {
 			fetch(`https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=${userId}`, {
 				method: 'post'
 			}).then((response) => response.json().then((body) => {
 				console.log("Fetched details from backend", body)
 
-				document.getElementById('nameField').value = name || body.name
+				document.getElementById('nameSentence').innerHTML = body.name || name
+				document.getElementById('nameField').value = body.name || name
 				document.getElementById("calorieUnitField").value = body.calorieUnit
 
-				Object.entries(body.activities).forEach(([activity, calories], index) => {
-					document.getElementById(`activityField${index + 2}NameUpper`).classList.remove("hide")
-					document.getElementById(`activityField${index + 2}CaloriesUpper`).classList.remove("hide")
+				const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-					document.getElementById(`activityField${index + 1}Name`).value = activity
-					document.getElementById(`activityField${index + 1}Calories`).value = calories
+				numbers.forEach((number) => {
+					const activities = Object.entries(body.activities)
+
+					if (activities[number]) {
+						document.getElementById(`activityField${number + 1}Name`).value = activities[number][0]
+						document.getElementById(`activityField${number + 1}Calories`).value = activities[number][1]
+					}
+
+					if (number <= activities.length) {
+						document.getElementById(`activityField${number + 1}`).classList.remove("hide")
+					} else {
+						document.getElementById(`activityField${number + 1}`).classList.add("hide")
+					}
 				})
 
 				M.updateTextFields()
@@ -246,7 +327,7 @@
 			window.userId = userId
 			window.userPicture = picture
 
-			updateForm(name)
+			updatePage(name)
 		}
 
 		function loggedOut() {
