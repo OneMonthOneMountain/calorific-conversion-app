@@ -40,12 +40,20 @@
 		<div class="row" style="margin-top: 5vh;">
 			<div class="col s12">
 				<table class="highlight" id="data-table">
-					<tr>
-						<th>Name</th>
-						<th>Distance (km)</th>
-						<th>Ascent (m)</th>
-						<th>Calories (kcal)</th>
-					</tr>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Distance (km)</th>
+							<th>Ascent (m)</th>
+							<th>Calories (kcal)</th>
+						</tr>
+						<tr class="grey lighten-3">
+							<th>Total</th>
+							<th id="totalDistance"></th>
+							<th id="totalAscent"></th>
+							<th id="totalCalories"></th>
+						</tr>
+					</thead>
 				</table>
 			</div>
 		</div>
@@ -99,15 +107,28 @@
 			var instances = M.Modal.init(elems);
 		});
 
-		window.fetch('https://onemonthonemountain.co.uk/scores.json').then((response) => response.json().then(({scores}) => {
+		window.fetch('https://onemonthonemountain.co.uk/scores.json').then((response) => response.json().then(({scores, totals}) => {
 			const table = document.getElementById("data-table");
 
-			scores.forEach((person, index) => {
-				var row = table.insertRow(index + 1)
+			document.getElementById("totalDistance").innerHTML = totals.distance
+			document.getElementById("totalAscent").innerHTML = totals.ascent
+			document.getElementById("totalCalories").innerHTML = totals.calories
 
+			scores.forEach((person, index) => {
+				var row = table.insertRow(index + 2)
+
+				row.id = `userRow${index}`
 				row.style.cursor = 'pointer'
 
 				row.addEventListener("click", () => onUserClick(person))
+
+				row.addEventListener("mouseover", (event) => {
+					document.getElementById(`userRow${index}`).classList.add("z-depth-1")
+				})
+
+				row.addEventListener("mouseout", (event) => {
+					document.getElementById(`userRow${index}`).classList.remove("z-depth-1")
+				})
 
 				var cell1 = row.insertCell(0);
 				var cell2 = row.insertCell(1);

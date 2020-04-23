@@ -285,7 +285,7 @@
 			console.log("Updating details...")
 
 			const name = document.getElementById("nameField").value
-			const calorieUnit = parseInt(document.getElementById("calorieUnitField").value, 10)
+			const calorieUnit = parseFloat(document.getElementById("calorieUnitField").value)
 
 			const activities = []
 
@@ -293,7 +293,7 @@
 
 			numbers.forEach((number) => {
 				const activityName = document.getElementById(`activityField${number}Name`).value
-				const activityCalories = parseInt(document.getElementById(`activityField${number}Calories`).value, 10)
+				const activityCalories = document.getElementById(`activityField${number}Calories`).value
 
 				if (activityName && activityCalories) {
 					activities.push({description: activityName, calories: activityCalories})
