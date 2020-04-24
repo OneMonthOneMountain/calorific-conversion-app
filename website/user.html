@@ -144,96 +144,7 @@
 				<div style="margin-top: 1rem" class="row">
 					<h5>Activities:</h5>
 				</div>
-				<div id="activityField1" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input placeholder="Morning Run" class="active" id="activityField1Name" type="text">
-						<label for="activityField1Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input placeholder="350" class="active" id="activityField1Calories" type="number">
-						<label for="activityField1Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField2" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField2Name" type="text">
-						<label for="activityField2Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField2Calories" type="number">
-						<label for="activityField2Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField3" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField3Name" type="text">
-						<label for="activityField3Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField3Calories" type="number">
-						<label for="activityField3Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField4" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField4Name" type="text">
-						<label for="activityField4Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField4Calories" type="number">
-						<label for="activityField4Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField5" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField5Name" type="text">
-						<label for="activityField5Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField5Calories" type="number">
-						<label for="activityField5Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField6" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField6Name" type="text">
-						<label for="activityField6Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField6Calories" type="number">
-						<label for="activityField6Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField7" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField7Name" type="text">
-						<label for="activityField7Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField7Calories" type="number">
-						<label for="activityField7Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField8" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField8Name" type="text">
-						<label for="activityField8Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField8Calories" type="number">
-						<label for="activityField8Calories">Calories</label>
-					</div>
-				</div>
-				<div id="activityField9" class="row hide" style="margin-bottom: 0;">
-					<div class="input-field col s6">
-						<input class="active" id="activityField9Name" type="text">
-						<label for="activityField10Name">Activity</label>
-					</div>
-					<div class="input-field col s6">
-						<input class="active" id="activityField9Calories" type="number">
-						<label for="activityField10Calories">Calories</label>
-					</div>
-				</div>
+				<div id="activities"></div>
 				<div class="row">
 					<div class="col s12">
 						<button class="btn waves-effect waves-light green" type="submit" name="action">
@@ -289,11 +200,9 @@
 
 			const activities = []
 
-			const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-			numbers.forEach((number) => {
+			document.querySelectorAll('.activityRow').forEach((field, number) => {
 				const activityName = document.getElementById(`activityField${number}Name`).value
-				const activityCalories = document.getElementById(`activityField${number}Calories`).value
+				const activityCalories = parseInt(document.getElementById(`activityField${number}Calories`).value, 10)
 
 				if (activityName && activityCalories) {
 					activities.push({description: activityName, calories: activityCalories})
@@ -315,6 +224,59 @@
 			})
 		}
 
+		function makeActivityField({id, type, value}) {
+			const input = document.createElement("input")
+			input.classList.add("active")
+			input.id = id
+			input.type = type
+
+			if (value !== undefined) {
+				input.value = value
+			} else {
+				input.placeholder = type === "text" ? "Morning Run" : 100
+			}
+
+			const label = document.createElement("label")
+			label.for = id
+			label.innerHTML = 'Activity'
+
+			const block = document.createElement("div")
+			block.classList.add("input-field", "col", "s6")
+			block.appendChild(input)
+			block.appendChild(label)
+
+			return block
+		}
+
+		function makeActivityRow(nameField, calorieField) {
+			const activityRow = document.createElement("div")
+
+			activityRow.classList.add("row", "activityRow")
+			activityRow.style.marginBottom = 0
+
+			activityRow.appendChild(nameField)
+			activityRow.appendChild(calorieField)
+
+			return activityRow
+		}
+
+		function updateActivities(activities = []) {
+			const activitiesDiv = document.getElementById("activities")
+
+			activities.push({})
+
+			activitiesDiv.innerHTML = ""
+
+			activities.forEach((activity, index) => {
+				const nameField = makeActivityField({id: `activityField${index}Name`, type: 'text', value: activity.description})
+				const calorieField = makeActivityField({id: `activityField${index}Calories`, type: 'number', value: activity.calories})
+
+				const activityRow = makeActivityRow(nameField, calorieField)
+
+				activitiesDiv.appendChild(activityRow)
+			})
+		}
+
 		function updatePage(name) {
 			fetch(`https://8m6ivvc6w6.execute-api.eu-west-2.amazonaws.com/default/get-user?id=${userId}`, {
 				method: 'post'
@@ -326,22 +288,7 @@
 					document.getElementById('nameField').value = body.name || name
 					document.getElementById("calorieUnitField").value = body.calorieUnit
 
-					const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-					numbers.forEach((number) => {
-						const activities = body.activities
-
-						if (activities[number]) {
-							document.getElementById(`activityField${number + 1}Name`).value = activities[number].description
-							document.getElementById(`activityField${number + 1}Calories`).value = activities[number].calories
-						}
-
-						if (number <= activities.length) {
-							document.getElementById(`activityField${number + 1}`).classList.remove("hide")
-						} else {
-							document.getElementById(`activityField${number + 1}`).classList.add("hide")
-						}
-					})
+					updateActivities(body.activities)
 
 					M.updateTextFields()
 
@@ -360,7 +307,7 @@
 			document.getElementById('nameSentence').innerHTML = name
 			document.getElementById('nameField').value = name
 
-			document.getElementById(`activityField1`).classList.remove("hide")
+			updateActivities()
 
 			M.updateTextFields()
 
