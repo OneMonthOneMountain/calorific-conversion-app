@@ -77,7 +77,7 @@
 	<div id="modal1" class="modal">
 		<div style="padding: 0;" class="modal-content">
 			<h4 class="green white-text center-align" style="padding-top:1vh; padding-bottom:1vh; line-height: 1.2em;">
-				<span id="modalName"></span>'s Activities
+				<span id="modalName"></span>
 			</h4>
 			<div class="container">
 				<table class="striped" id="modal-data-table">
@@ -110,7 +110,7 @@
 		window.fetch('https://onemonthonemountain.co.uk/scores.json').then((response) => response.json().then(({scores, totals}) => {
 			const table = document.getElementById("data-table");
 
-			document.getElementById("totalDistance").innerHTML = totals.distance
+			document.getElementById("totalDistance").innerHTML = totals.distance.toFixed(1)
 			document.getElementById("totalAscent").innerHTML = totals.ascent
 			document.getElementById("totalCalories").innerHTML = totals.calories
 
