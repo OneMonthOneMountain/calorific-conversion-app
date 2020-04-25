@@ -1,5 +1,6 @@
 const S3Client = require('aws-sdk/clients/s3')
 const { DocumentClient } = require('aws-sdk/clients/dynamodb')
+const { mountains } = require('mountains.json')
 
 const s3 = new S3Client()
 const dynamo = new DocumentClient()
@@ -14,8 +15,10 @@ const calculateData = (score) => {
     
     const ascent = Math.round((calories / CalorieUnit) * 100)
     const distance =  Math.round((calories / CalorieUnit) * 10) / 10
+
+    const mountain = mountains.find((mountain) => mountain.height < ascent)
     
-    return { id, name, calories, distance, ascent, activities }
+    return { id, name, calories, distance, ascent, activities, mountain }
 }
 
 const handler = async () => {
@@ -35,6 +38,8 @@ const handler = async () => {
 
             return a
         }, { calories: 0, distance: 0, ascent: 0 })
+
+        totals.mountain = mountains.find((mountain) => mountain.height < totals.ascent)
         
         await s3.putObject({
             Bucket: 'omom-website',
