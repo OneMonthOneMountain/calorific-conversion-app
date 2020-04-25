@@ -1,6 +1,8 @@
 const S3Client = require('aws-sdk/clients/s3')
 const { DocumentClient } = require('aws-sdk/clients/dynamodb')
-const { mountains } = require('mountains.json')
+const mountainData = require('mountains.json')
+
+const mountains = mountainData.mountains.reverse()
 
 const s3 = new S3Client()
 const dynamo = new DocumentClient()
