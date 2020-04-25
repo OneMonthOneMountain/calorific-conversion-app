@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<title>Calorific Conversion</title>
 
 	<!-- Compiled and minified CSS -->
@@ -172,7 +173,7 @@
 			scores.forEach((person, index) => {
 				var row = table.insertRow(index + 2)
 
-				addCell(row, index, 0, person.name, person)
+				addCell(row, index, 0, addMedal(index, person.name), person)
 				addCell(row, index, 1, person.distance.toFixed(1), person)
 				addCell(row, index, 2, person.ascent, person)
 				addCell(row, index, 3, person.calories, person)
@@ -193,6 +194,18 @@
 
 			updateGoals(totals)
 		}))
+
+		function addMedal(index, name) {
+			const medals = ['&#x1F947', '&#x1F948', '&#x1F949']
+
+			const medal = medals[index]
+
+			if (medal) {
+				return `${name} ${medal}`
+			}
+
+			return name
+		}
 
 		function addCell(row, rowNumber, cellIndex, value, person) {
 			var cell = row.insertCell(cellIndex)
