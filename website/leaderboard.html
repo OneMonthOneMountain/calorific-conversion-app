@@ -19,7 +19,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper green">
-				<a href="./calorific-conversion.html" class="brand-logo center">Leaderboard</a>
+				<a href="./calorific-conversion.html" class="brand-logo center">OMOM</a>
 				<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="./calorific-conversion.html">Home</a></li>
@@ -37,7 +37,12 @@
 	</ul>
 
 	<div class="container">
-		<div class="row" style="margin-top: 5vh;">
+		<div class="row" style="margin-top: 2vh; margin-bottom: 0">
+			<div class="col s12 green-text darken-2">
+				<h3>Leaderboard</h3>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 2vh;">
 			<div class="col s12">
 				<table class="highlight" id="data-table">
 					<thead>
@@ -58,18 +63,54 @@
 			</div>
 		</div>
 		<div class="row" style="margin-top: 5vh;">
-			<div class="col s12 center-align">
-				<p class="flow-text">
-					Get yourself on the leaderboard by adding an activity! Players are ranked by the number of calories
-					burned. How far can you (virtually) hike?
-				</p>
-			</div>
-		</div>
-		<div class="row" style="margin-top: 2vh;">
 			<div class="col s12 m6 l4 offset-m3 offset-l4">
 				<a href="user.html" style="width: -webkit-fill-available;"
 					class="waves-effect waves-light btn green">Add An
 					Activity</a>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 2vh; margin-bottom: 0">
+			<div class="col s12 green-text darken-2">
+				<h3>Goals & Stats</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s8">
+				<h5 class="left-align">M6 Motorway: 373.7 km</h5>
+			</div>
+			<div class="col s4">
+				<h5 class="right-align"><span id="m6Percentage"></span> Complete</h5>
+			</div>
+			<div class="col s12">
+				<div class="progress orange lighten-4">
+					<div id="m6Bar" class="determinate orange" style="width: 0%"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s8">
+				<h5 class="left-align">Mount Everest: 8,848m</h5>
+			</div>
+			<div class="col s4">
+				<h5 class="right-align"><span id="everestPercentage"></span> Complete</h5>
+			</div>
+			<div class="col s12">
+				<div class="progress orange lighten-4">
+					<div id="everestBar" class="determinate orange" style="width: 0%"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s8">
+				<h5 class="left-align">500 Chicken McNuggets: 22500 kcal</h5>
+			</div>
+			<div class="col s4">
+				<h5 class="right-align"><span id="nuggetsPercentage"></span> Complete</h5>
+			</div>
+			<div class="col s12">
+				<div class="progress orange lighten-4">
+					<div id="nuggetsBar" class="determinate orange" style="width: 0%"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -136,11 +177,26 @@
 				var cell4 = row.insertCell(3);
 
 				cell1.innerHTML = person.name
-				cell2.innerHTML = person.distance
+				cell2.innerHTML = person.distance.toFixed(1)
 				cell3.innerHTML = person.ascent
 				cell4.innerHTML = person.calories
 			})
+
+			updateGoals(totals)
 		}))
+
+		function updateGoal(name, total, completed) {
+			const percentage = Math.round((completed / total) * 100)
+
+			document.getElementById(`${name}Bar`).style.width = `${percentage}%`
+			document.getElementById(`${name}Percentage`).innerHTML = `${percentage}%`
+		}
+
+		function updateGoals(totals) {
+			updateGoal("everest", 8848, totals.ascent)
+			updateGoal("m6", 373.7, totals.distance)
+			updateGoal("nuggets", 22500, totals.calories)
+		}
 
 		function onUserClick(user) {
 			console.log(user)

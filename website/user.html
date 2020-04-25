@@ -55,7 +55,7 @@
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper green">
-				<a href="./calorific-conversion.html" class="brand-logo center">Activities</a>
+				<a href="./calorific-conversion.html" class="brand-logo center">OMOM</a>
 				<a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="./calorific-conversion.html">Home</a></li>
@@ -105,22 +105,24 @@
 
 	<div id="loggedIn" class="hide">
 		<div class="container">
-			<div style="margin-top: 4vh; margin-bottom: 0" class="row">
+			<div class="row" style="margin-top: 3vh; margin-bottom: 0">
+				<div class="col s12 green-text darken-2">
+					<h3>Activities</h3>
+				</div>
+			</div>
+			<div style="margin-bottom: 2vh" class="row">
 				<div class="col s12">
-					<p class="center-align flow-text">
+					<p class="flow-text">
 						Hi, <dev id="nameSentence"></dev>! Get yourself on the <a
 							href="./leaderboard.html">leaderboard</a> by entering some activities
-						below. We recommend this <a
-							href="https://www.omnicalculator.com/sports/calories-burned">calculator</a> for calories,
-						although you
-						can
-						use whatever works best for you.
+						below. We just need a name and a number of calories. There are plenty of online calculators that
+						you can use to work them out.
 						Don't forget to calculate your hiking calories to see how far you've hiked!
 					</p>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col s12 m6 offset-m3">
+			<div class="row" style="margin-bottom: 8vh">
+				<div class="col s12 m6">
 					<button style="width: -webkit-fill-available;" data-target="modal1"
 						class="btn modal-trigger green">Calculate Your Hiking Calories</button>
 				</div>
@@ -238,7 +240,7 @@
 
 			const label = document.createElement("label")
 			label.for = id
-			label.innerHTML = 'Activity'
+			label.innerHTML = type === "text" ? 'Activity' : "Calories"
 
 			const block = document.createElement("div")
 			block.classList.add("input-field", "col", "s6")
