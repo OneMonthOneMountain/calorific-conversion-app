@@ -42,7 +42,7 @@
 		{ "name": "Bomber Mountain", "height": 3914, "url": "https://en.wikipedia.org/wiki/Bomber_Mountain" },
 		{ "name": "Mount Kinabalu", "height": 4095, "url": "https://en.wikipedia.org/wiki/Mount_Kinabalu" },
 		{ "name": "Jbel Toubkal", "height": 4167, "url": "https://en.wikipedia.org/wiki/Jbel_Toubkal" },
-		{ "name": "Mauna Kea", "height": 4207, "url": "https://en.wikipedia.org/wiki/Mauna_Kea" },
+		{ "name": "Mauna Kea (From Sea Level)", "height": 4207, "url": "https://en.wikipedia.org/wiki/Mauna_Kea" },
 		{ "name": "Mount Massive", "height": 4398, "url": "https://en.wikipedia.org/wiki/Mount_Massive" },
 		{ "name": "Matterhorn", "height": 4478, "url": "https://en.wikipedia.org/wiki/Matterhorn" },
 		{ "name": "Ras Dashen", "height": 4533, "url": "https://en.wikipedia.org/wiki/Ras_Dashen" },
@@ -87,6 +87,16 @@
 		{ "name": "Lhotse", "height": 8516, "url": "https://en.wikipedia.org/wiki/Mont_Blanc" },
 		{ "name": "Kangchenjunga", "height": 8586, "url": "https://en.wikipedia.org/wiki/Kangchenjunga" },
 		{ "name": "K2", "height": 8611, "url": "https://en.wikipedia.org/wiki/K2" },
-		{ "name": "Mount Everest", "height": 8848, "url": "https://en.wikipedia.org/wiki/Mount_Everest" }
+		{ "name": "Mount Everest", "height": 8848, "url": "https://en.wikipedia.org/wiki/Mount_Everest" },
+		{ "name": "Mauna Kea (From Base)", "height": 10203, "url": "https://en.wikipedia.org/wiki/Euboea_Montes" },
+		{ "name": "Euboea Montes", "height": 10600, "url": "https://en.wikipedia.org/wiki/Mauna_Kea" },
+		{ "name": "Maxwell Montes", "height": 11000, "url": "https://en.wikipedia.org/wiki/Maxwell_Montes" },
+		{ "name": "Elysium Mons", "height": 13862, "url": "https://en.wikipedia.org/wiki/Elysium_Mons" },
+		{ "name": "Pavonis Mons", "height": 14037, "url": "https://en.wikipedia.org/wiki/Pavonis_Mons" },
+		{ "name": "Boösaule Montes", "height": 17500, "url": "https://en.wikipedia.org/wiki/Bo%C3%B6saule_Montes" },
+		{ "name": "Arsia Mons", "height": 17779, "url": "https://en.wikipedia.org/wiki/Arsia_Mons" },
+		{ "name": "Ascraeus Mons", "height": 18209, "url": "https://en.wikipedia.org/wiki/Ascraeus_Mons" },
+		{ "name": "Equatorial Ridge, Iapetus", "height": 20000, "url": "https://en.wikipedia.org/wiki/Equatorial_ridge_on_Iapetus" },
+		{ "name": "Olympus Mons", "height": 21229, "url": "https://en.wikipedia.org/wiki/Olympus_Mons" }
 	]
 }
