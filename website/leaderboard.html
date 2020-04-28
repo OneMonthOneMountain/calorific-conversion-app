@@ -167,7 +167,6 @@
 		window.fetch('https://onemonthonemountain.co.uk/scores.json').then((response) => response.json().then(({scores, totals}) => {
 			const table = document.getElementById("data-table");
 
-
 			document.getElementById("totalDistance").innerHTML = totals.distance.toFixed(1)
 			document.getElementById("totalAscent").innerHTML = totals.ascent
 			document.getElementById("totalCalories").innerHTML = totals.calories
