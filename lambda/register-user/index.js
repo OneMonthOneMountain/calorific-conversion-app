@@ -23,13 +23,13 @@ const handler = async (event) => {
 			Key: {
 				UserId: user.id,
 			},
-			UpdateExpression: 'SET CalorieUnit = :calorieUnit, Name = :name, Activities.#date = :activities',
+			UpdateExpression: 'SET CalorieUnit = :calorieUnit, Username = :username, Activities.#date = :activities',
 			ExpressionAttributeNames: {
 				'#date': new Date().toISOString().split("T")[0]
 			},
 			ExpressionAttributeValues: {
 				':calorieUnit': user.calorieUnit,
-				':name': user.name,
+				':username': user.name,
 				':activities': user.activities,
 			},
 		}).promise()
