@@ -11,11 +11,13 @@ const calculateCalories = (activities) => activities.map((activity) => activity.
 
 const calculateData = (score) => {
     console.log('Scores for user: ', JSON.stringify(score))
-    const { UserId: id, Name: name, Activities: activities, CalorieUnit } = score
+    const { UserId: id, Name: name, Activities: activityHistory, CalorieUnit } = score
 
-    const date = new Date().toISOString().split('T')[0]
+    const today = new Date().toISOString().split('T')[0]
 
-    const calories = calculateCalories(activities[date])
+    const activities = activityHistory[today]
+
+    const calories = calculateCalories(activities)
     
     const ascent = Math.round((calories / CalorieUnit) * 100)
     const distance =  Math.round((calories / CalorieUnit) * 10) / 10
