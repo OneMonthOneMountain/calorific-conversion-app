@@ -13,7 +13,7 @@ const handler = async (event) => {
 	try {
 		const user = JSON.parse(event.body)
 
-		if (!user.id || !user.name || !user.calorieUnit) {
+		if (!user.id || !user.name || !user.weight) {
 			console.log('User missing a required value: ', JSON.stringify(user))
 			throw Error('Missing required value')
 		}
@@ -23,12 +23,12 @@ const handler = async (event) => {
 			Key: {
 				UserId: user.id,
 			},
-			UpdateExpression: 'SET CalorieUnit = :calorieUnit, UserName = :userName, Activities.#date = :activities',
+			UpdateExpression: 'SET Weight = :weight, UserName = :userName, Activities.#date = :activities',
 			ExpressionAttributeNames: {
 				'#date': new Date().toISOString().split("T")[0]
 			},
 			ExpressionAttributeValues: {
-				':calorieUnit': user.calorieUnit,
+				':weight': user.weight,
 				':userName': user.name,
 				':activities': user.activities,
 			},

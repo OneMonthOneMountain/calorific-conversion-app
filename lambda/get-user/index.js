@@ -29,7 +29,7 @@ const handler = async (event) => {
 				id: Item.UserId,
 				name: Item.UserName,
 				activities: Item.Activities,
-				calorieUnit: Item.CalorieUnit
+				weight: Item.Weight
 			})
 		}
 	} catch (error) {
