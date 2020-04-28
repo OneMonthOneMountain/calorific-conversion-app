@@ -13,7 +13,7 @@ const calculateData = (score) => {
     console.log('Scores for user: ', JSON.stringify(score))
     const { UserId: id, Name: name, Activities: activities, CalorieUnit } = score
 
-    const date = new Date().toIsoString().split('T')[0]
+    const date = new Date().toISOString().split('T')[0]
 
     const calories = calculateCalories(activities[date])
     
