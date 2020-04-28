@@ -15,7 +15,7 @@ const calculateData = (score) => {
 
     const today = new Date().toISOString().split('T')[0]
 
-    const activities = activityHistory[today]
+    const activities = activityHistory[today] || []
 
     const calories = calculateCalories(activities)
     
