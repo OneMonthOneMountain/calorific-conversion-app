@@ -13,7 +13,9 @@ const calculateData = (score) => {
     console.log('Scores for user: ', JSON.stringify(score))
     const { UserId: id, Name: name, Activities: activities, CalorieUnit } = score
 
-    const calories = calculateCalories(activities)
+    const date = new Date().toIsoString().split('T')[0]
+
+    const calories = calculateCalories(activities[date])
     
     const ascent = Math.round((calories / CalorieUnit) * 100)
     const distance =  Math.round((calories / CalorieUnit) * 10) / 10

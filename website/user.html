@@ -297,7 +297,9 @@
 					document.getElementById('nameField').value = body.name || name
 					document.getElementById("calorieUnitField").value = body.calorieUnit
 
-					updateActivities(body.activities)
+					const date = new Date().toISOString().split('T')[0]
+
+					updateActivities(body.activities[date])
 
 					M.updateTextFields()
 
