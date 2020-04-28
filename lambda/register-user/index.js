@@ -18,14 +18,20 @@ const handler = async (event) => {
 			throw Error('Missing required value')
 		}
 		
-		await dynamo.put({
+		await dynamo.update({
 			TableName: 'scores',
-			Item: {
-				"UserId": user.id,
-				"Name": user.name,
-				"CalorieUnit": user.calorieUnit,
-				"Activities": user.activities
-			}
+			Key: {
+				UserId: user.id,
+			},
+			UpdateExpression: 'SET CalorieUnit = :calorieUnit, Name = :name, Activities.#date = :activities',
+			ExpressionAttributeNames: {
+				'#date': new Date().toISOString().split("T")[0]
+			},
+			ExpressionAttributeValues: {
+				':calorieUnit': user.calorieUnit,
+				':name': user.name,
+				':activities': user.activities,
+			},
 		}).promise()
 		
 		return {
