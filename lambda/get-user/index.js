@@ -27,7 +27,7 @@ const handler = async (event) => {
 			headers,
 			body: JSON.stringify({
 				id: Item.UserId,
-				name: Item.Name,
+				name: Item.UserName,
 				activities: Item.Activities,
 				calorieUnit: Item.CalorieUnit
 			})

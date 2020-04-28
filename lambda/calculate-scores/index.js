@@ -11,7 +11,7 @@ const calculateCalories = (activities) => activities.map((activity) => activity.
 
 const calculateData = (score) => {
     console.log('Scores for user: ', JSON.stringify(score))
-    const { UserId: id, Name: name, Activities: activityHistory, CalorieUnit } = score
+    const { UserId: id, UserName: name, Activities: activityHistory, CalorieUnit } = score
 
     const today = new Date().toISOString().split('T')[0]
 
