@@ -185,7 +185,7 @@
 			scores.forEach((person, index) => {
 				var row = table.insertRow(index + 2)
 
-				addCell(row, index, 0, addMedal(index, person.name), person)
+				addCell(row, index, 0, addMedal(index, person.calories, person.name), person)
 				addCell(row, index, 1, person.distance.toFixed(1), person)
 				addCell(row, index, 2, person.ascent, person)
 				addCell(row, index, 3, person.calories, person)
@@ -207,12 +207,12 @@
 			updateGoals(totals)
 		}))
 
-		function addMedal(index, name) {
+		function addMedal(index, calories, name) {
 			const medals = ['&#x1F947', '&#x1F948', '&#x1F949']
 
 			const medal = medals[index]
 
-			if (medal) {
+			if (medal && calories > 0) {
 				return `${name} ${medal}`
 			}
 
