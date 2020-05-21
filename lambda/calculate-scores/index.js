@@ -50,7 +50,7 @@ const handler = async () => {
         totals.mountain = mountains.find((mountain) => mountain.height < totals.ascent)
         
         await s3.putObject({
-            Bucket: 'omom-website',
+            Bucket: 'omom-virtual-hiker',
             Key: 'scores.json',
             Body: JSON.stringify({ scores, totals }),
             ContentType: 'application/json',
